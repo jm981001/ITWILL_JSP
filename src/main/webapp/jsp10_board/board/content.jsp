@@ -44,9 +44,18 @@
 	Connection con = DriverManager.getConnection(url, user, password);
 		
 	// 3단계. SQL 구문 작성 및 전달
-	// => idx 가 일치하는 레코드 조회
-	String sql = "SELECT * FROM board WHERE idx=?";
+	// => 게시물 조회 전 글번호(idx) 일치하는 레코드의 조회수(readcount) 증가 작업(+1) 수행(UPDATE)
+	String sql = "UPDATE board SET readcount=readcount+1 WHERE idx=?";
 	PreparedStatement pstmt = con.prepareStatement(sql);
+	pstmt.setInt(1, idx);
+	
+	// 4단계. SQL 구문 실행 및 결과 처리
+	pstmt.executeUpdate();
+	
+	// 3단계. SQL 구문 작성 및 전달
+	// => idx 가 일치하는 레코드 조회
+	sql = "SELECT * FROM board WHERE idx=?";
+	pstmt = con.prepareStatement(sql);
 	pstmt.setInt(1, idx);
 	
 	// 4단계. SQL 구문 실행 및 결과 처리

@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<jsp:include page="inc/top.jsp"></jsp:include>
 	<h1 align="center">메인페이지</h1>
 	<hr>
 	<!-- 하위폴더인 board 폴더 내의 writeForm.jsp 페이지 링크 -->

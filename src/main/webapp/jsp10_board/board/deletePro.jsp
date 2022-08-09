@@ -1,4 +1,4 @@
-<%@page import="java.sql.PreparedStatement"%>
+  <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -16,28 +16,16 @@ request.setCharacterEncoding("UTF-8");
 int idx = Integer.parseInt(request.getParameter("idx")); // 학번
 String passwd = request.getParameter("passwd"); // 이름
 // ==========================================================================================
-// JDBC 를 활용하여 MySQL - study_jsp3 데이터베이스 내의 student 테이블에 데이터 추가(INSERT)
-// 0. DB 연결에 필요한 문자열 4개 저장
 String driver = "com.mysql.cj.jdbc.Driver";
 String url = "jdbc:mysql://localhost:3306/study_jsp3";
 String user = "root";
 String password = "1234";
-
-// 1단계. 드라이버 클래스 로드
 Class.forName(driver);
-
-// 2단계. DB 연결
 Connection con = DriverManager.getConnection(url, user, password);
-// out.println("DB 연결 완료!");
-
-// 3단계. SQL 구문 작성 및 전달
 String sql = "DELETE FROM board WHERE idx=? AND passwd= ? ";
 PreparedStatement pstmt = con.prepareStatement(sql);
 pstmt.setInt(1, idx);
 pstmt.setString(2, passwd);
-
-// 4단계. SQL 구문 실행 및 결과 처리
-// => INSERT 구문이므로 PreparedStatement 객체의 executeUpdate() 메서드 호출
 int count = pstmt.executeUpdate();
  
 
@@ -47,8 +35,8 @@ if(count > 0) { // 글쓰기 성공 시
 	%>
 	<script>
 		alert("글쓰기 실패!");
-		history.back();
-	</script>
+		location.href="../index.jsp";
+		</script>
 	<%
 }
 
