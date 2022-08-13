@@ -20,6 +20,7 @@
 			<th width="150">작성일</th>
 			<th width="100">조회수</th>
 		</tr>
+		<jsp:include page="best.jsp"></jsp:include>
 		<%
 		// SELECT 구문을 사용하여 board 테이블의 모든 레코드 조회 후 테이블에 출력
 		// DB 연결에 필요한 정보 문자열(4가지)을 변수에 별도로 저장
@@ -49,6 +50,7 @@
 		// 4단계. SQL 구문 실행 및 결과 처리
 		ResultSet rs = pstmt.executeQuery();
 		
+	
 		// while 문을 사용하여 다음 레코드 존재(rs.next() 가 true)할 동안 반복
 		while(rs.next()) {
 			%>
